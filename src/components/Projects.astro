@@ -1,29 +1,126 @@
 ---
-const projects = [
-{
+import TeAyudoImg from "../../public/images/te-ayudo.webp";
+import PortfolioImg from "../../public/images/portfolio.png"
+import HttpServerImg1 from "../../public/images/http-server-1.png";
+import HttpServerImg2 from "../../public/images/http-server-2.png";
+import HttpServerImg3 from "../../public/images/http-server-3.png";
+import LibritoImg from "../../public/images/librito.png";
+
+type TagColor =
+	| "stone"
+	| "sky"
+	| "cyan"
+	| "blue"
+	| "amber"
+	| "emerald"
+	| "rose"
+	| "violet"
+	| "orange";
+
+interface Tag {
+	label: string;
+	color?: TagColor;
+}
+
+interface Link {
+	label: string;
+	url: string;
+	icon?: "github" | "external";
+}
+
+interface Project {
+	titleKey: string;
+	descKey: string;
+	images?: string[];
+	tags: Tag[];
+	links?: Link[];
+}
+
+const tagColorClasses: Record<TagColor, string> = {
+	stone: "bg-stone-800/60 text-stone-400 border-stone-700/50",
+	sky: "bg-sky-900/40 text-sky-400 border-sky-800/50",
+	cyan: "bg-cyan-900/40 text-cyan-400 border-cyan-800/50",
+	blue: "bg-blue-900/40 text-blue-400 border-blue-800/50",
+	amber: "bg-amber-900/40 text-amber-400 border-amber-800/50",
+	emerald: "bg-emerald-900/40 text-emerald-400 border-emerald-800/50",
+	rose: "bg-rose-900/40 text-rose-400 border-rose-800/50",
+	violet: "bg-violet-900/40 text-violet-400 border-violet-800/50",
+	orange: "bg-orange-900/40 text-orange-400 border-orange-800/50",
+};
+
+const projects: Project[] = [
+	{
 		titleKey: "projects.0.title",
 		descKey: "projects.0.desc",
-    tags: [ "For Fun", "TypeScript", "PixiJS", "React", "Algorithms"],
-		link: "#",
+		images: [
+      HttpServerImg1.src,
+      HttpServerImg2.src,
+      HttpServerImg3.src
+		],
+		tags: [
+			{ label: "For Fun" },
+			{ label: "C", color: "sky" },
+			{ label: "Make" },
+			{ label: "Sockets" },
+			{ label: "Algorithms" },
+		],
+		links: [{ label: "GitHub", url: "https://github.com/DanX3N0/c-server", icon: "github" }],
 	},
 	{
 		titleKey: "projects.1.title",
 		descKey: "projects.1.desc",
-    tags: ["For Fun", "Astro", "React", "Tailwind CSS", "SEO"],
-		link: "#",
-  },
-  {
-    titleKey: "projects.2.title",
-    descKey: "projects.2.desc",
-    tags: ["JavaScript", "React", "React Native", "MongoDB", "ReactAdmin", "Express", "Context API", "NestJs", "Microservices", "Docker", "3rd party APIs", "Gemini API", "Redux"],
-    link: "#",
-  },
-  {
-    titleKey: "projects.3.title",
-    descKey: "projects.3.desc",
-    tags: ["Astro", "React", "MongoDB", "TailwindCSS", "Express", "TanStack", "Node", "TypeScript"],
-    link: "#",
-  }
+		images: [
+      PortfolioImg.src
+    ],
+		tags: [
+			{ label: "For Fun" },
+			{ label: "Astro", color: "orange" },
+			{ label: "React", color: "cyan" },
+			{ label: "Tailwind CSS", color: "sky" },
+			{ label: "SEO" },
+			{ label: "PixiJS", color: "rose" },
+		],
+		links: [
+			{ label: "GitHub", url: "https://github.com/DanX3N0/portfolio", icon: "github" },
+		],
+	},
+	{
+		titleKey: "projects.2.title",
+		descKey: "projects.2.desc",
+		images: [
+    TeAyudoImg.src,
+		],
+		tags: [
+			{ label: "JavaScript", color: "amber" },
+			{ label: "React", color: "cyan" },
+			{ label: "React Native", color: "cyan" },
+			{ label: "MongoDB", color: "emerald" },
+			{ label: "Express" },
+			{ label: "NestJs", color: "rose" },
+			{ label: "Docker", color: "sky" },
+			{ label: "Gemini API", color: "violet" },
+			{ label: "Redux", color: "violet" },
+		],
+		links: [],
+	},
+	{
+		titleKey: "projects.3.title",
+		descKey: "projects.3.desc",
+		images: [
+      LibritoImg.src	
+		],
+		tags: [
+			{ label: "Astro", color: "orange" },
+			{ label: "React", color: "cyan" },
+			{ label: "MongoDB", color: "emerald" },
+			{ label: "TailwindCSS", color: "sky" },
+			{ label: "Express" },
+			{ label: "TanStack", color: "amber" },
+			{ label: "Node", color: "emerald" },
+			{ label: "TypeScript", color: "blue" },
+		],
+		links: [],
+	},
 ];
 ---
 
@@ -37,33 +134,189 @@ const projects = [
 
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{projects.map((project) => (
-				<article class="reveal group bg-stone-900/50 border border-stone-800 rounded-xl p-6 hover:border-stone-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-500/5">
-					<div class="flex items-start justify-between mb-4">
-						<h3 data-i18n={project.titleKey} class="text-lg font-semibold text-white group-hover:text-stone-300 transition-colors">
+				<article class="reveal group bg-stone-900/50 border border-stone-800 rounded-xl overflow-hidden hover:border-stone-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-500/5">
+					{project.images && project.images.length > 0 && (
+						<div class="carousel-container relative group/carousel">
+							<div class="carousel-track flex overflow-hidden scroll-smooth">
+								{project.images.map((src) => (
+									<img
+										src={src}
+										alt=""
+										class="w-full h-40 object-cover shrink-0 cursor-zoom-in"
+										loading="lazy"
+									/>
+								))}
+							</div>
+							{project.images.length > 1 && (
+								<>
+									<button
+										type="button"
+										aria-label="Previous image"
+										class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-full bg-black/50 text-white/70 hover:bg-black/80 hover:text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity cursor-pointer"
+									>
+										‹
+									</button>
+									<button
+										type="button"
+										aria-label="Next image"
+										class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-full bg-black/50 text-white/70 hover:bg-black/80 hover:text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity cursor-pointer"
+									>
+										›
+									</button>
+									<div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+										{project.images.map((_, i) => (
+											<button
+												type="button"
+												aria-label={`Go to image ${i + 1}`}
+												class={`carousel-dot w-1.5 h-1.5 rounded-full transition-colors ${i === 0 ? "bg-white/90" : "bg-white/40 hover:bg-white/60"}`}
+											/>
+										))}
+									</div>
+								</>
+							)}
+						</div>
+					)}
+					<div class="p-6">
+						<h3 data-i18n={project.titleKey} class="text-lg font-semibold text-white group-hover:text-stone-300 transition-colors mb-3">
 							{project.titleKey}
 						</h3>
-						<a
-							href={project.link}
-							class="text-stone-600 hover:text-stone-300 transition-colors"
-							aria-label="View project"
-						>
-							<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-							</svg>
-						</a>
-					</div>
-					<p data-i18n={project.descKey} class="text-stone-400 text-sm leading-relaxed mb-4">
-						{project.descKey}
-					</p>
-					<div class="flex flex-wrap gap-2">
-						{project.tags.map((tag) => (
-							<span class="text-xs px-2.5 py-1 bg-stone-800/60 text-stone-400 rounded-full border border-stone-700/50">
-								{tag}
-							</span>
-						))}
+						<p data-i18n={project.descKey} class="text-stone-400 text-sm leading-relaxed mb-4">
+							{project.descKey}
+						</p>
+						<div class="flex flex-wrap gap-2 mb-4">
+							{project.tags.map((tag) => (
+								<span class={`text-xs px-2.5 py-1 rounded-full border ${tagColorClasses[tag.color ?? "stone"]}`}>
+									{tag.label}
+								</span>
+							))}
+						</div>
+						{project.links && project.links.length > 0 && (
+							<div class="border-t border-stone-800 pt-4 mt-4">
+								<h4 data-i18n="projects.links" class="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">
+									Links
+								</h4>
+								<div class="flex flex-wrap gap-3">
+									{project.links.map((link) => (
+										<a
+											href={link.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="inline-flex items-center gap-1.5 text-sm text-stone-400 hover:text-stone-200 transition-colors"
+										>
+											{link.icon === "github" && (
+												<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+													<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+												</svg>
+											)}
+											{link.icon === "external" && (
+												<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+													<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+												</svg>
+											)}
+											{link.label}
+										</a>
+									))}
+								</div>
+							</div>
+						)}
 					</div>
 				</article>
 			))}
 		</div>
 	</div>
+
+	<div id="project-lightbox" class="hidden fixed inset-0 z-50 bg-black/85 flex items-center justify-center cursor-zoom-out backdrop-blur-sm">
+		<button type="button" aria-label="Close lightbox" class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white transition-colors text-xl cursor-pointer">
+			×
+		</button>
+		<img src="" alt="" class="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+	</div>
 </section>
+
+<script>
+	function initCarousels() {
+		document.querySelectorAll(".carousel-container").forEach((container) => {
+			const track = container.querySelector(".carousel-track") as HTMLElement | null;
+			const prevBtn = container.querySelector(".carousel-prev");
+			const nextBtn = container.querySelector(".carousel-next");
+			const dots = container.querySelectorAll(".carousel-dot");
+
+			if (!track || track.children.length <= 1) return;
+
+			let current = 0;
+			const total = track.children.length;
+
+			function goTo(index: number) {
+				const clamped = ((index % total) + total) % total;
+				current = clamped;
+				track!.scrollLeft = clamped * track!.offsetWidth;
+				dots.forEach((dot, i) => {
+					dot.classList.toggle("bg-white/90", i === clamped);
+					dot.classList.toggle("bg-white/40", i !== clamped);
+				});
+			}
+
+			prevBtn?.addEventListener("click", (e) => {
+				e.stopPropagation();
+				goTo(current - 1);
+			});
+
+			nextBtn?.addEventListener("click", (e) => {
+				e.stopPropagation();
+				goTo(current + 1);
+			});
+
+			dots.forEach((dot, i) => {
+				dot.addEventListener("click", (e) => {
+					e.stopPropagation();
+					goTo(i);
+				});
+			});
+		});
+	}
+
+	function initLightbox() {
+		const lightbox = document.getElementById("project-lightbox");
+		if (!lightbox) return;
+
+		const lightboxImg = lightbox.querySelector("img");
+		const closeBtn = lightbox.querySelector("button");
+
+		function openLightbox(src: string) {
+			if (lightboxImg) lightboxImg.src = src;
+			lightbox!.classList.remove("hidden");
+			document.body.style.overflow = "hidden";
+		}
+
+		function closeLightbox() {
+			lightbox!.classList.add("hidden");
+			document.body.style.overflow = "";
+		}
+
+		document.querySelectorAll(".carousel-track img").forEach((img) => {
+			img.addEventListener("click", () => {
+				openLightbox((img as HTMLImageElement).src);
+			});
+		});
+
+		lightbox.addEventListener("click", (e) => {
+			if (e.target === lightbox || e.target === lightboxImg) {
+				closeLightbox();
+			}
+		});
+
+		closeBtn?.addEventListener("click", closeLightbox);
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") closeLightbox();
+		});
+	}
+
+	initCarousels();
+	initLightbox();
+
+	document.addEventListener("astro:after-swap", () => {
+		initCarousels();
+		initLightbox();
+	});
+</script>
