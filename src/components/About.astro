@@ -1,0 +1,45 @@
+---
+const stats = [
+	{ value: "2+", key: "about.stat.exp" },
+	{ value: "\u221e", key: "about.stat.curious" },
+];
+---
+
+<section id="about" class="relative py-24 px-6">
+	<div class="max-w-6xl mx-auto">
+		<div class="reveal">
+			<p data-i18n="about.label" class="text-stone-400 text-sm font-medium tracking-widest uppercase mb-2">
+				About
+			</p>
+			<h2 data-i18n="about.title" class="text-3xl md:text-4xl font-bold text-white mb-12">
+				Who I Am
+			</h2>
+		</div>
+
+		<div class="grid md:grid-cols-2 gap-12 items-center">
+			<div class="reveal space-y-6">
+				<p data-i18n-html="about.p1" class="text-stone-400 leading-relaxed">
+					I'm a software engineer passionate about building things that are both
+					<strong class="text-stone-200">fast</strong> and
+					<strong class="text-stone-200">beautiful</strong>. I enjoy diving deep
+					into algorithms, system design, and performance optimization just as
+					much as crafting pixel-perfect interfaces.
+				</p>
+				<p data-i18n="about.p3" class="text-stone-400 leading-relaxed">
+					When I'm not coding, you'll find me exploring new design patterns,
+					contributing to open source, or experimenting with creative coding
+					projects like the boid simulation on this page.
+				</p>
+			</div>
+
+			<div class="reveal grid grid-cols-3 gap-4">
+				{stats.map((stat) => (
+					<div class="bg-stone-900/50 border border-stone-800 rounded-xl p-6 text-center hover:border-stone-500/50 transition-colors">
+						<p class="text-3xl font-bold text-stone-300 mb-1">{stat.value}</p>
+						<p data-i18n={stat.key} class="text-xs text-stone-500 uppercase tracking-wider">{stat.key}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>

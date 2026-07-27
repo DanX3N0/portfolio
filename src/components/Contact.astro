@@ -1,0 +1,53 @@
+---
+import EmailIcon from "../../public/icons/EmailIcon.svg";
+import GithubIcon from "../../public/icons/GithubIcon.svg";
+
+const links = [
+	{
+		label: "GitHub",
+    href: "https://github.com/DanX3N0",
+		icon: GithubIcon,
+	},
+	{
+		label: "Email",
+		href: "mailto:danieldv283@gmail.com",
+		icon: EmailIcon,
+	},
+];
+---
+
+<section id="contact" class="relative py-24 px-6 bg-stone-950/40">
+	<div class="max-w-3xl mx-auto text-center">
+		<div class="reveal">
+			<p data-i18n="contact.label" class="text-stone-400 text-sm font-medium tracking-widest uppercase mb-2">
+				Contact
+			</p>
+			<h2 data-i18n="contact.title" class="text-3xl md:text-4xl font-bold text-white mb-6">
+				Let's Work Together
+			</h2>
+			<p data-i18n="contact.desc" class="text-stone-400 leading-relaxed mb-10 max-w-lg mx-auto">
+				Have a project in mind or just want to chat? I'm always open to
+				discussing new opportunities and interesting problems.
+			</p>
+		</div>
+
+		<div class="reveal flex justify-center gap-6 mb-12">
+			{links.map((link) => (
+				<a
+					href={link.href}
+					target={link.href.startsWith("http") ? "_blank" : undefined}
+					rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+					class="group flex items-center gap-3 px-5 py-3 bg-stone-900/50 border border-stone-800
+						rounded-lg hover:border-stone-500/50 transition-all duration-300"
+					aria-label={link.label}
+				>
+				  <link.icon />	
+					<span class="text-sm text-stone-400 group-hover:text-white transition-colors">
+						{link.label}
+					</span>
+				</a>
+			))}
+		</div>
+	</div>
+</section>
+

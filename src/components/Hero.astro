@@ -1,0 +1,44 @@
+---
+import { BoidRenderer } from "./flock_sim/BoidRenderer";
+import ArrowDownIcon from "../../public/icons/ArrowDownIcon.svg"
+---
+
+<section id="hero" class="relative w-full h-screen overflow-hidden flex items-center justify-center">
+	<BoidRenderer client:only="react" />
+
+	<div class="relative z-10 text-center px-6 max-w-2xl">
+		<p data-i18n="hero.role" class="text-stone-400 text-sm font-medium tracking-widest uppercase mb-4 animate-fade-up">
+			Software Engineer
+		</p>
+		<h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-up delay-100">
+			Daniel <span class="text-stone-400">D.</span>
+		</h1>
+		<p data-i18n="hero.tagline" class="text-stone-400 text-lg md:text-xl leading-relaxed mb-8 animate-fade-up delay-200">
+			I build performant, elegant software — from low-level optimization to polished user experiences.
+		</p>
+		<div class="flex gap-4 justify-center animate-fade-up delay-300">
+			<a
+				href="#projects"
+				data-i18n="hero.projects"
+				class="px-6 py-3 bg-stone-700 hover:bg-stone-600 text-white rounded-lg
+					font-medium transition-all duration-300 hover:shadow-lg hover:shadow-stone-500/20"
+			>
+				View Projects
+			</a>
+			<a
+				href="#contact"
+				data-i18n="hero.contact"
+				class="px-6 py-3 border border-stone-700 hover:border-stone-500 text-stone-300
+					hover:text-white rounded-lg font-medium transition-all duration-300"
+			>
+				Get in Touch
+			</a>
+		</div>
+	</div>
+
+	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in delay-500">
+		<a href="#about" class="text-stone-500 hover:text-stone-300 transition-colors" aria-label="Scroll down">
+		  <ArrowDownIcon />
+		</a>
+	</div>
+</section>
