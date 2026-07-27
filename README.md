@@ -1,46 +1,33 @@
-# Astro Starter Kit: Basics
+#  Personal Web Portfolio
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+A modern, high-performance personal portfolio built with **Astro 5**, **React 19**, **Tailwind CSS v4**, and **PixiJS** for interactive 2D web canvas rendering. Formatted and linted using **Biome**.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+##  Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- ** Blazing Fast Performance:** Powered by Astro 5 static site generation and component islands.
+- ** Interactive 2D Graphics:** Integrated PixiJS v8 (`@pixi/react`) for canvas animations and visual effects.
+- ** Modern UI Components:** Built using React 19 and `@astrojs/react`.
+- ** Dynamic Styling:** Styled with the latest Tailwind CSS v4 via `@tailwindcss/vite`.
+- ** Code Quality & Speed:** Lightning-fast formatting and linting powered by Biome.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+---
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+##  Tech Stack
 
-## 🧞 Commands
+- **Framework:** [Astro 5](https://astro.build/)
+- **UI Library:** [React 19](https://react.dev/)
+- **Graphics & Animation:** [PixiJS v8](https://pixijs.com/) & `@pixi/react`
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Linter & Formatter:** [Biome](https://biomejs.dev/)
+- **Runtime:** Node.js `>=22.12.0`
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## Prerequisites
 
-## 👀 Want to learn more?
+Ensure you have **Node.js v22.12.0** or higher installed on your system.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+node -v  # Should be >= 22.12.0
